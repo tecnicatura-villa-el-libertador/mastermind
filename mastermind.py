@@ -29,3 +29,7 @@ def reportar(numero, plenos, parciales):
 
 def principal():
     pass
+
+
+if __name__ == '__main__':
+    principal()
