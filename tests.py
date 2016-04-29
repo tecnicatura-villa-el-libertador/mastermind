@@ -27,33 +27,38 @@ def test_crear_numero():
         assert set(numero).issubset(set(map(str, range(10))))
 
 
-def test_evaluar_1():
-    assert evaluar('1234')
+def test_validar_1():
+    assert validar('1234')
 
 
-def test_evaluar_no_acepta_repetidos():
-    assert not evaluar('1134')
-    assert not evaluar('1334')
-    assert not evaluar('1133')
-    assert not evaluar('1111')
-    assert not evaluar('0122')
+def test_validar_no_acepta_repetidos():
+    assert not validar('1134')
+    assert not validar('1334')
+    assert not validar('1133')
+    assert not validar('1111')
+    assert not validar('0122')
 
 
-def test_evaluar_no_acepta_letras():
-    assert not evaluar('a123')
-    assert not evaluar('123v')
+def test_validar_no_acepta_letras():
+    assert not validar('a123')
+    assert not validar('123v')
 
 
-def test_evaluar_no_acepta_letras():
-    assert not evaluar('a123')
-    assert not evaluar('123v')
+def test_validar_no_acepta_letras():
+    assert not validar('a123')
+    assert not validar('123v')
 
 
-def test_evaluar_largo_4():
-    assert not evaluar('123')
-    assert not evaluar('2')
+def test_validar_largo_4():
+    assert not validar('123')
+    assert not validar('2')
 
 
-
+def test_evaluar():
+    assert evaluar('1234', '1234') == (4, 0)
+    assert evaluar('1234', '2134') == (2, 2)
+    assert evaluar('1234', '1243') == (2, 2)
+    assert evaluar('1234', '9871') == (0, 1)
+    assert evaluar('1234', '9831') == (1, 1)
 
 
