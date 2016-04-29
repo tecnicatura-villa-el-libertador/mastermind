@@ -1,4 +1,4 @@
-from mastermind import reportar
+from mastermind import reportar, crear_numero
 
 
 def test_reportar_1():
@@ -17,3 +17,11 @@ def test_reporart_3():
     real = reportar('1092', plenos=0, regulares=1)
     esperado = "El número 1092 tiene 0 pleno y 1 regular: estás más lejos que Macri de la pobreza cero"
     assert real == esperado
+
+
+def test_crear_numero():
+    for x in range(1000):
+        numero = crear_numero()
+        assert numero.isdigit()
+        assert len(numero) == 4
+        assert set(numero).issubset(set(map(str, range(10))))
