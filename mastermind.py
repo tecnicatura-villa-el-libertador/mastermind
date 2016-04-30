@@ -4,7 +4,8 @@
 Este es módulo de nuestro jueguito Mastermind
 
 """
-
+import random 
+    
 
 # agregar tu funcion acà
 def ingresar_numero():
@@ -12,7 +13,20 @@ def ingresar_numero():
 
 
 def crear_numero():
-    pass
+    """
+    Selecciona digitos al azar(sin repetir)formando e 
+    imprimiendo aleatoriamente numeros de x cifras    
+    """
+
+    digitos = [str(i) for i in range(10)]
+ 
+    codigo = "" 
+    for i in range(4):
+        candidato = random.choice(digitos)
+        while candidato in codigo:
+            candidato = random.choice(digitos) 
+        codigo = codigo + candidato
+    return codigo
 
 
 def evaluar(numero, numero_objetivo):
