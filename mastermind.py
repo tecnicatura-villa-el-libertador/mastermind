@@ -16,7 +16,25 @@ def crear_numero():
 
 
 def evaluar(numero, numero_objetivo):
-    pass
+    """
+    Función de Evaluación:
+    Nuestro código recibe dos números de cuatro cifras y los compara. Devuelve aciertos Plenos y Parciales.
+    Si los aciertos son Plenos significa que coincide el dígito y la posición.
+    Si los aciertos son Parciales significa que coincide el dígito pero no la posición.
+    """
+    plenos = 0
+    parciales = 0
+    intentos = 0
+    cant_digitos = 4
+
+    for i in range(cant_digitos):
+        if numero[i] == numero_objetivo [i]:
+            plenos = plenos + 1
+        elif numero[i] in numero_objetivo:
+            parciales = parciales + 1
+    return (plenos, parciales)
+
+
 
 
 def verificar(numero):
