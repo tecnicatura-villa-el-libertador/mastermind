@@ -4,7 +4,11 @@ from mastermind import reportar, crear_numero
 
 def test_reportar_1():
     real = reportar('1234', plenos=1, regulares=2)
+<<<<<<< Updated upstream
     esperado = u"El número 1234 tiene 1 pleno y 2 regulares. Dale que va"
+=======
+    esperado = "El número 1234 tiene 1 pleno y 2 regulares: dale que va"
+>>>>>>> Stashed changes
     assert real == esperado
 
 
@@ -24,7 +28,6 @@ def test_crear_numero():
     for x in range(1000):
         numero = crear_numero()
         assert numero.isdigit()
-        assert len(numero) == 4
         assert len(set(numero)) == 4
         assert set(numero).issubset(set(map(str, range(10))))
 
@@ -63,4 +66,9 @@ def test_evaluar():
     assert evaluar('1234', '9871') == (0, 1)
     assert evaluar('1234', '9831') == (1, 1)
 
+
+if __name__ == '__main__':
+    test_reportar_3()
+    test_reportar_2()
+    test_reportar_1()
 
