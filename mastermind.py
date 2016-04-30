@@ -9,7 +9,11 @@ import random
 
 # agregar tu funcion acà
 def ingresar_numero():
-    pass
+    while True:
+        num = input ("ingrese 4 digitos: ")
+        if verificar(num):
+            print("tu numero es",num)
+            return num
 
 
 def crear_numero():
