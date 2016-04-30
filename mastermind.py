@@ -13,7 +13,13 @@ def ingresar_numero():
 
 
 def crear_numero():
-    digitos = ("0","1","2","3","4","5","6","7","8","9") 
+    """
+    Selecciona digitos al azar(sin repetir)formando e 
+    imprimiendo aleatoriamente numeros de x cifras    
+    """
+
+    digitos = [str(i) for i in range(10)]
+ 
     codigo = "" 
     for i in range(4):
         candidato = random.choice(digitos)
