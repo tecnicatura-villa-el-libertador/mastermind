@@ -4,31 +4,23 @@
 Este es módulo de nuestro jueguito Mastermind
 
 """
-import random 
-    
+import random
 
-# agregar tu funcion acà
-def ingresar_numero():
-    while True:
-        num = input ("ingrese 4 digitos: ")
-        if verificar(num):
-            print("tu numero es",num)
-            return num
 
 
 def crear_numero():
     """
-    Selecciona digitos al azar(sin repetir)formando e 
-    imprimiendo aleatoriamente numeros de x cifras    
+    Selecciona digitos al azar(sin repetir)formando e
+    imprimiendo aleatoriamente numeros de x cifras
     """
 
     digitos = [str(i) for i in range(10)]
- 
-    codigo = "" 
+
+    codigo = ""
     for i in range(4):
         candidato = random.choice(digitos)
         while candidato in codigo:
-            candidato = random.choice(digitos) 
+            candidato = random.choice(digitos)
         codigo = codigo + candidato
     return codigo
 
@@ -53,18 +45,40 @@ def evaluar(numero, numero_objetivo):
     return (plenos, parciales)
 
 
-
-
 def verificar(numero):
-    pass
+    if not numero.isdigit():
+        return False
+    if len(numero) != 4:
+        return False
+    if len(set(numero)) != 4:
+        return False
+    return True
+
 
 
 def reportar(numero, plenos, parciales):
-    pass
+
+    pleno_str = 'pleno' if plenos == 1 else 'plenos'
+    parciales_str = 'parcial' if parciales == 1 else 'parciales'
+
+    s = "El numero {} tiene {} {} y {} {}"
+    return s.format(numero, plenos, pleno_str, parciales, parciales_str)
 
 
+# agregar tu funcion acà
 def principal():
-    pass
+    objetivo = crear_numero()
+    while True:
+        num = input ("ingrese 4 digitos: ")
+        if verificar(num):
+            pleno, parcial = evaluar(num, objetivo)
+            print(reportar(num, pleno, parcial))
+            if pleno == 4:
+                print('Ganaste!')
+                return
+        else:
+            print('Numero no válido!')
+
 
 
 if __name__ == '__main__':
