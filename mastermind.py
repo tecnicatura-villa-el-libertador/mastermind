@@ -67,17 +67,28 @@ def reportar(numero, plenos, parciales):
 
 # agregar tu funcion acà
 def principal():
-    objetivo = crear_numero()
+    cantidad_jugadores = int(input('Cuantos judadores? '))
+    jugadores = {}
+    for jugador in range(cantidad_jugadores):
+        # pedimos el nombre de cada uno de los jugadores
+        nombre = input('Ingrese el nombre del jugador {}: '.format(jugador + 1))
+        jugadores[nombre] = crear_numero()
+
+    ronda = 0
     while True:
-        num = input ("ingrese 4 digitos: ")
-        if verificar(num):
-            pleno, parcial = evaluar(num, objetivo)
-            print(reportar(num, pleno, parcial))
-            if pleno == 4:
-                print('Ganaste!')
-                return
-        else:
-            print('Numero no válido!')
+        ronda += 1
+        print('============== RONDA {} ==============='.format(ronda))
+        for jugador, objetivo in jugadores.items():
+
+            num = input ("Turno de {} - ingrese 4 digitos: ".format(jugador))
+            if verificar(num):
+                pleno, parcial = evaluar(num, objetivo)
+                print(reportar(num, pleno, parcial))
+                if pleno == 4:
+                    print('Ganó {}!'.format(jugador))
+                    return
+            else:
+                print('Numero no válido!')
 
 
 
