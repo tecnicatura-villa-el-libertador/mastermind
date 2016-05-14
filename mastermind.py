@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Este es módulo de nuestro jueguito Mastermind
 
@@ -69,28 +67,42 @@ def reportar(numero, plenos, parciales):
 def principal():
     cantidad_jugadores = int(input('Cuantos judadores? '))
     jugadores = {}
+    jugadas = {}
     for jugador in range(cantidad_jugadores):
         # pedimos el nombre de cada uno de los jugadores
         nombre = input('Ingrese el nombre del jugador {}: '.format(jugador + 1))
         jugadores[nombre] = crear_numero()
+        jugadas[nombre] = []
 
     ronda = 0
     while True:
         ronda += 1
         print('============== RONDA {} ==============='.format(ronda))
         for jugador, objetivo in jugadores.items():
+            while True:
+                num = input ("Turno de {} - ingrese 4 digitos: ".format(jugador))               
+                if verificar(num):
+                    pleno, parcial = evaluar(num, objetivo)
+                    jugadas[jugador].append((num, pleno, parcial))
+                    print(reportar(num, pleno, parcial))
+                    if pleno == 4:
+                        print('Ganó {}!'.format(jugador))
+                        return
+                    break
+                elif num=="s":
+                    print("termino el juego")
+                    return 
+                elif num=="t":
 
-            num = input ("Turno de {} - ingrese 4 digitos: ".format(jugador))
-            if verificar(num):
-                pleno, parcial = evaluar(num, objetivo)
-                print(reportar(num, pleno, parcial))
-                if pleno == 4:
-                    print('Ganó {}!'.format(jugador))
-                    return
-            else:
-                print('Numero no válido!')
+                    print('|  ronda  |  num  |  plenos | parciales |')
+                    print('+=======================================+')  
+                    for ronda, (num, plenos, parciales) in enumerate(jugadas[jugador]):
+                        print('| {: >3}     |  {} |    {}    |     {}     |'.format(ronda, num, plenos, parciales))
+                else:
+                    print('Numero no válido!')
 
 
 
 if __name__ == '__main__':
     principal()
+  
