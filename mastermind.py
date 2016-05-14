@@ -74,19 +74,24 @@ def principal():
         nombre = input('Ingrese el nombre del jugador {}: '.format(jugador + 1))
         jugadores[nombre] = crear_numero()
 
+    ganadores = []
     ronda = 0
     while True:
         ronda += 1
         print('============== RONDA {} ==============='.format(ronda))
         for jugador, objetivo in jugadores.items():
-
+            if jugador in ganadores:
+                continue
             num = input ("Turno de {} - ingrese 4 digitos: ".format(jugador))
             if verificar(num):
                 pleno, parcial = evaluar(num, objetivo)
                 print(reportar(num, pleno, parcial))
                 if pleno == 4:
                     print('Ganó {}!'.format(jugador))
-                    return
+                    ganadores.append(jugador)
+                    if len(ganadores) == cantidad_jugadores:
+                        print('El juego acabó!')
+                        return 
             else:
                 print('Numero no válido!')
 
